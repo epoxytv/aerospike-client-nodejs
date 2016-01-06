@@ -1838,7 +1838,14 @@ int populate_write_op ( as_operations * op, Local<Object> obj, LogInfo * log)
     as_v8_detail(log, "write operation on bin : %s", binName);
 
     Local<Value> v8val = obj->Get(Nan::New("value").ToLocalChecked());
-    if ( v8val->IsNumber() ) {
+    if (strcmp(binName, "uid") == 0) {
+        int64_t val = strtoll(*String::Utf8Value(v8val), NULL, 10);
+        as_v8_detail(log, "integer value to be written %d", val);
+        as_operations_add_write_int64(op, binName, val);
+        if ( binName != NULL) free(binName);
+        return AS_NODE_PARAM_OK;
+    }
+    else if ( v8val->IsNumber()) {
         int64_t val = v8val->NumberValue();
         as_v8_detail(log, "integer value to be written %d", val);
         as_operations_add_write_int64(op, binName, val);
