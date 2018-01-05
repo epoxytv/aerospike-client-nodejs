@@ -180,7 +180,7 @@ download()
   fi
 
   # Compose the URL for the client tgz
-  URL="http://www.aerospike.com/download/client/c/${AEROSPIKE_C_VERSION}/artifact/${PKG_DIST}"
+    URL="https://artifacts.aerospike.com/aerospike-client-c/${AEROSPIKE_C_VERSION}/aerospike-client-c-3.1.25.${PKG_DIST}.x86_64.tgz"
 
   # Download and extract the client tgz.
   # Use non-slient mode to show progress about the download. Important for slower networks.
